@@ -1,0 +1,10 @@
+<?php if ($this->getPaymentFee()): ?>
+    <tr>
+        <td style="<?php echo $this->getStyle() ?>" class="a-right" colspan="<?php echo $this->getColspan(); ?>">
+            <?php echo $this->getTotal()->getTitle() ?>
+        </td>
+        <td style="<?php echo $this->getStyle() ?>" class="a-right">
+            <?php echo $this->helper('checkout')->formatPrice($this->getPaymentFee()) ?>
+        </td>
+    </tr>
+<?php endif; ?>

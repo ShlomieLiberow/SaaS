@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">    
+    <adminhtml_sales_order_view>
+        <reference name="order_totals">
+            <block name="payment_fee" type="afterpay/paymentFee_order_totals_paymentfee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_view>
+
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_totals">
+            <block name="payment_fee" type="afterpay/paymentFee_order_invoice_totals_paymentfee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+
+    <adminhtml_sales_order_invoice_new>
+        <reference name="invoice_totals">
+            <block name="payment_fee" type="afterpay/paymentFee_order_invoice_totals_paymentfee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    	
+    <adminhtml_sales_order_invoice_updateqty>
+    	<reference name="invoice_totals">
+            <block name="payment_fee" type="afterpay/paymentFee_order_invoice_totals_paymentfee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
+    
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_totals">
+            <block name="payment_fee" type="afterpay/paymentFee_order_creditmemo_totals_paymentfee" before="tax"/>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="creditmemo_totals">
+            <block name="payment_fee" type="afterpay/paymentFee_order_creditmemo_totals_paymentfee" before="tax"/>
+        </reference>
+        <reference name="adjustments">
+       		<action method = 'setTemplate'>
+       			<template>TIG/Afterpay/paymentfee/order/creditmemo/create/totals/adjustments.phtml</template>
+       		</action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+    
+    <adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="creditmemo_totals">
+            <block name="payment_fee" type="afterpay/paymentFee_order_creditmemo_totals_paymentfee" before="tax"/>
+        </reference>
+        <reference name="adjustments">
+       		<action method = 'setTemplate'>
+       			<template>TIG/Afterpay/paymentfee/order/creditmemo/create/totals/adjustments.phtml</template>
+       		</action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+    
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addCss">
+				<stylesheet>css/TIG/Afterpay/afterpay.css</stylesheet>
+			</action>
+        </reference>
+    </adminhtml_system_config_edit>
+    
+    <adminhtml_sales_order_create_index>
+    	<reference name="totals">
+    		<action method = 'setTemplate'>
+    			<setTemplate>TIG/Afterpay/paymentfee/checkout/totals.phtml</setTemplate>
+    		</action>
+    	</reference>
+    </adminhtml_sales_order_create_index>
+</layout>

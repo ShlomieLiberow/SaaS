@@ -1,0 +1,87 @@
+/* Global */
+ { width:100%; font:12px/1.5em Arial,Helvetica,sans-serif; color:#333; }
+ h1 { font-size:18px; font-weight:bold; color:#eb5e01; border-bottom:1px solid #d6d6d6; padding:0 0 7px; margin:0 0 10px; }
+ h2 { font-size:13px; font-weight:bold; padding:10px 0 4px; }
+ p { padding:0 0 11px; }
+ a { color:#6f8992; text-decoration:underline; }
+ a.pdf { background: no-repeat; display:block; height:23px; padding:0 0 0 26px; margin:0 0 7px; }
+ 
+
+/* Content */
+ .contentWrap .tigLogo { clear:both; width:900px;	}
+ .contentWrap .tigLogo span { display:block; width:117px; height:9px; text-indent:-999em; background:no-repeat; float:right; }
+
+ #leftColumn { float:left; width:435px; padding-right:15px; }
+
+ #rightColumn { float:left; width:435px; padding-left:15px; }
+ #rightColumn .supportService { background:#fff; border:1px solid #d9d9d9; padding:15px 15px 10px; }
+
+/* ClearFix */
+ .contentWrap:after { content:"."; display:block; clear:both; font-size:0; height:0; line-height:0; overflow:hidden;  }
+
+ .firstSteps ul li { list-style:disc inside none; }
+ 
+.afterpay-section:hover {
+	background-image: url("../../../images/tabs_span_bg.gif") repeat-x scroll 0 100% transparent !important;
+	background-color: #D8E6E6 !important;
+	border-bottom: medium none !important;
+	height: 24px !important;
+	padding: 6px 6px 3px 18px !important;
+}
+.afterpay-section {
+	background: url("../../../images/tabs_span_bg.gif") repeat-x scroll 0 100% transparent !important;
+    border-bottom: medium none !important;
+	height: 24px !important;
+	padding: 6px 6px 3px 18px !important;
+}
+.afterpay-section span {
+	background: no-repeat url(../../../images/TIG/Afterpay/AfterPay_logo_small.png) !important;
+    overflow: hidden !important;
+    padding: 24px 0 0 !important;
+	height: 0 !important;
+}
+.afterpay-section.active {
+	background-color:white !important;
+}
+
+.afterpay-header {
+	background: no-repeat url(../../../images/TIG/Afterpay/AfterPay_logo_large.png) !important;
+    overflow: hidden !important;
+	height: 0 !important;
+	width: 215px;
+	padding-top: 80px;
+}
+
+.afterpay_payment_method_banner {
+	background: #FAFAFA no-repeat;
+	background-position: 10px 15px;
+	height: 55px;
+	padding-top:35px;
+	padding-left:240px;
+	border: 1px solid #D6D6D6;
+	margin-bottom:20px;
+}
+
+.afterpay_config {
+	background-color: rgb(245,111,9) !important;
+}
+
+.afterpay_service_enabled {
+	background-color: rgb(30,143,255) !important;	
+}
+
+.afterpay_service_disabled {
+	background-color: rgb(174,216,230) !important;	
+}
+
+.afterpay_portfolio_test {
+	background-color: rgb(255,240,0) !important;
+}
+
+.afterpay_portfolio_live {
+	background-color: rgb(137,197,64) !important;	
+}
+
+.afterpay_portfolio_disabled {
+	background-color: rgb(198,203,201) !important;	
+}

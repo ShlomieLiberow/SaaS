@@ -1,0 +1,129 @@
+<?php $this->setBlockData()?>
+<?php $_code = $this->getMethodCode(); ?>
+<?php $_helper = $this->helper('afterpay');?>
+
+<div id="payment-errors" class="validation-advice" style="display:none;"></div>
+
+<fieldset class="form-list">
+    <ul id="payment_form_<?php echo $_code; ?>" style="display:none;">
+        <li>        
+            <img src="<?php echo $this->getSkinUrl('images/TIG/Afterpay/AfterPay_logo_large.png'); ?>" />
+            <!-- The following text has been approved by AfterPay. Do not alter this text in any way without explicit instructions from AfterPay. -->
+            <p style = "padding:0;">
+                <strong><em><?php echo $_helper->__("Met digitale factuur uw online bestelling betalen via AfterPay"); ?></em></strong>
+            </p>
+            <p style = "padding:0;">
+                <?php echo $_helper->__("AfterPay voert voor %s het volledige achteraf betaalproces uit. 
+                    Dit betekent dat u een digitale factuur van AfterPay via e-mail ontvangt om het gekochte product(en) te betalen. 
+                    U kunt bij %s betalen met een digitale factuur tot een bedrag van %s als u voor de eerste keer betaalt via AfterPay. 
+                    Bent u al bekend bij AfterPay kunt u betalen tot een bedrag van %s. ",
+                    $this->shopName,
+                    $this->shopName,
+                    $this->maxOrderAmountNewCustomers,
+                    $this->maxOrderAmountReturningCustomers
+                ); ?>
+            </p>
+            <p style = "padding:0;">
+                <?php echo $_helper->__(
+                    'Ter goedkeuring van uw verzoek om te betalen met factuur voert AfterPay een gegevenscontrole uit. 
+                    AfterPay hanteert een strikt privacybeleid zoals omschreven in haar %sprivacy statement%s. 
+                    Mocht onverhoopt uw verzoek tot betaling met factuur niet geautoriseerd worden, dan kunt u natuurlijk het aan te kopen product betalen met een andere betaalmethode.',
+                    $this->privacyStatementUrl,
+                    $this->anchorClose
+                ); ?>
+            </p>
+            <p style = "padding:0;">
+                <?php echo $_helper->__(
+                    'U kunt bij vragen altijd %scontact%s met AfterPay opnemen. 
+                    Voor meer informatie verwijzen wij u naar het consumentendeel van de %sAfterPay website%s.',
+                    $this->consumerContactUrl,
+                    $this->anchorClose,
+                    $this->consumerPageUrl,
+                    $this->anchorClose
+                ); ?>
+            </p>
+        </li>
+        <li>
+            <div class="field">
+                <label for="<?php echo $_code; ?>_gender" class = "required"><em>*</em><?php echo $_helper->__('Gender:'); ?></label>
+                <div class="input-box" id="">
+                    <select class = "validate-select" id="<?php echo $_code?>_gender" name="payment[<?php echo $_code; ?>][gender]" style="width:130px;">
+                        <option value = ""><?php echo $_helper->__('Please select.'); ?></option>
+                        <option value = "M"><?php echo $_helper->__('Male'); ?></option>
+                        <option value = "V"><?php echo $_helper->__('Female'); ?></option>
+                    </select>
+                </div>
+            </div>
+        <?php if (!$this->isB2B()): ?>
+            <div class="field">
+                <?php 
+                echo $this->getLayout()->createBlock('afterpay/customer_widget_dob')
+                                       ->setFieldIdFormat($_code . ':billing:%s')
+                                       ->setFieldNameFormat('payment[' . $_code . '][%s]')
+                                       ->setIsRequired(true)
+                                       ->setPaymentMethodCode($_code)
+                                       ->toHtml() 
+                ?>
+             </div>
+            </li>  
+            <li> 
+                <div class="field">
+                    <label for="<?php echo $_code; ?>_bankaccount" class="required"><em>*</em><?php echo $_helper->__('Bank account number:'); ?></label>
+                    <div class="input-box">
+                        <input type="text" class = "required-entry" id="<?php echo $_code; ?>_bankaccount" name="payment[<?php echo $_code; ?>][bankaccount]" style="">
+                    </div>
+                </div>
+            </li>
+        <?php endif; ?>
+        <?php if ($this->isB2B()): ?>
+            <li>
+                <div class="field">
+                    <label for="<?php echo $_code; ?>_companyname" class="required"><em>*</em><?php echo $_helper->__('Company name:'); ?></label>
+                    <div class="input-box">
+                        <input type="text" value="<?php echo $this->getCompany(); ?>" class="required-entry" id="<?php echo $_code; ?>_companyname" name="payment[<?php echo $_code; ?>][companyname]">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="<?php echo $_code; ?>_department" class=""><?php echo $_helper->__('Department:'); ?></label>
+                    <div class="input-box">
+                        <input type="text" class = "" id="<?php echo $_code; ?>_department" name="payment[<?php echo $_code; ?>][department]">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="field">
+                    <label for="<?php echo $_code; ?>_coc" class="required"><em>*</em><?php echo $_helper->__('Coc number:'); ?></label>
+                    <div class="input-box">
+                        <input type="text" class = "required-entry" id="<?php echo $_code; ?>_coc" name="payment[<?php echo $_code; ?>][coc]">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="<?php echo $_code; ?>_vat" class="required"><em>*</em><?php echo $_helper->__('Vatnumber:'); ?></label>
+                    <div class="input-box">
+                        <input type="text" class = "required-entry" id="<?php echo $_code; ?>_vat" name="payment[<?php echo $_code; ?>][vat]">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="field">
+                    <label for="<?php echo $_code; ?>_costcenter"><?php echo $_helper->__('Costcenter'); ?></label>
+                    <div class="input-box">
+                        <input type="text" id="<?php echo $_code; ?>_costcenter" name="payment[<?php echo $_code; ?>][costcenter]">
+                    </div>
+                </div>
+            </li>     
+        <?php endif; ?>
+        <li>
+            <input type="checkbox" class="required-entry" id="<?php echo $_code; ?>_termsAndConditions" name="payment[<?php echo $_code; ?>][conditions]" style="float:left;">
+            <label for="<?php echo $_code; ?>_termsAndConditions" class="required" style="padding-left:5px; float:left;">
+                <em>*</em>
+                <?php echo $_helper->__(
+                    'Ik ga akkoord met de %sbetalingsvoorwaarden%s van AfterPay',
+                    $this->paymentConditionsUrl,
+                    $this->anchorClose
+                );?>
+            </label>
+        </li>
+    </ul>
+</fieldset>
+
