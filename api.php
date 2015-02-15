@@ -2,7 +2,7 @@
 require_once("afterpay/lib/Afterpay/Afterpay.php");
 
 ini_set('error_reporting', E_STRICT);
-process();
+//process();
 
 
 function process(){
@@ -24,7 +24,7 @@ function process(){
     $sku = 'PRODUCT1';
     $name = 'Product name 1';
     $qty = 1;
-    $price = 3000; // in cents
+    $price = 1000; // in cents
     $tax_category = 1; // 1 = high, 2 = low, 3, zero, 4 no tax
     $Afterpay->create_order_line( $sku, $name, $qty, $price, $tax_category );
 
@@ -35,7 +35,7 @@ function process(){
     $qty = 1;
     $price = 30; // in cents
     $tax_category = 1; // 1 = high, 2 = low, 3, zero, 4 no tax
-    $Afterpay->create_order_line( $sku, $name, $qty, $price, $tax_category );
+//    $Afterpay->create_order_line( $sku, $name, $qty, $price, $tax_category );
 
 //
 // Set up the bill to address
@@ -114,17 +114,17 @@ function process(){
         $invLine[$i]["articleID"] = "articleID " . $i;
 
         $invLine[$i]["quantity"] = "1 ";
-        $invLine[$i]["unitprice"] = 1000;
+        $invLine[$i]["unitprice"] = 200;
         $invLine[$i]["vatcategory"] =1;
         $invLine[$i]["articleID"] = "articleID " . $i;
 
-        $Afterpay->create_order_line( "sku", "abc", 1, 1000, 1 );
+        $Afterpay->create_order_line( "sku", "abc", 1, 200, 1 );
     }
     // Capture
     //
 
     $tid = array();
-    for($i = 0; $i<3; $i++) {
+    for($i = 0; $i<5; $i++) {
         $cap["Invoicelines"] = $invLine;
         $cap["invoicenumber"] = $orderNo.$i;
         $cap["ordernumber"] = $orderNo;
@@ -141,7 +141,7 @@ function process(){
         $result =$Afterpay->order_result;
 
 
-        echo "<p/>";
+//        echo "<p/>";
 
         //var_dump($result);
         $tid[$i] = $result->return->transactionId;
@@ -151,39 +151,82 @@ function process(){
 
     }
   //  var_dump($tid);
-echo json_encode($tid);
+
+  echo "<li class='row'><span class='quantity col-md-1'>1</span><span class='itemName col-md-5'>AfterPay ";
+  echo json_encode($tid[0]);
+  echo "</span><span class='itemName col-md-3'>25/02/2015</span><span class='popbtn'><a class='arrow'></a></span><span class='price col-md-2'>£200.00</span></li>";
+
+  echo "<li class='row'><span class='quantity col-md-1'>1</span><span class='itemName col-md-5'>AfterPay ";
+  echo json_encode($tid[1]);
+  echo "</span><span class='itemName col-md-3'>05/03/2015</span><span class='popbtn'><a class='arrow'></a></span><span class='price col-md-2'>£200.00</span></li>";
+
+  echo "<li class='row'><span class='quantity col-md-1'>1</span><span class='itemName col-md-5'>AfterPay ";
+  echo json_encode($tid[2]);
+  echo "</span><span class='itemName col-md-3'>15/03/2015</span><span class='popbtn'><a class='arrow'></a></span><span class='price col-md-2'>£200.00</span></li>";
+
+  echo "<li class='row'><span class='quantity col-md-1'>1</span><span class='itemName col-md-5'>AfterPay ";
+  echo json_encode($tid[3]);
+  echo "</span><span class='itemName col-md-3'>25/03/2015</span><span class='popbtn'><a class='arrow'></a></span><span class='price col-md-2'>£200.00</span></li>";
+
+  echo "<li class='row'><span class='quantity col-md-1'>1</span><span class='itemName col-md-5'>AfterPay ";
+  echo json_encode($tid[4]);
+  echo "</span><span class='itemName col-md-3'>05/04/2015</span><span class='popbtn'><a class='arrow'></a></span><span class='price col-md-2'>£200.00</span></li>";
 
 
 
+  }
 
+?>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Shopping Cart</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+      <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>
+    </head>
 
- //   echo $orderNo;
+    <body>
 
+      <nav class="navbar" >
+        <div class="container">
+          <a class="navbar-brand" href="file:///Users/hoonio/Developer/SaaS/index.html">SaaS</a>
+          <div class="navbar-right">
+            <div class="container minicart"></div>
+          </div>
+        </div>
+      </nav>
 
-    //var_dump();
-}
+      <div class="container text-center" style="margin-top: 100px;">
 
-/// ORDER
+        <div class="col-md-12 text-left">
+          <ul>
+            <li class="row list-inline columnCaptions ">
+              <span class="col-md-1">QTY</span>
+              <span class="col-md-4">ITEM</span>
+              <span class="col-md-4">Scheduled Payment</span>
+              <span class="col-md-2">Price</span>
+              <span class="col-md-1"></span>
+            </li>
 
-// Set up the additional information
-//   $aporder['ordernumber'] = 'ORDER123';
-//  $aporder['bankaccountnumber'] = '12345'; // or IBAN 'NL32INGB0000012345';
-// $aporder['currency'] = 'EUR';
-//$aporder['ipaddress'] = "5.79.64.0";//$_SERVER['REMOTE_ADDR'];
+<?php process();?>
 
-//       "captureFull'
-// Create the order object for B2C or B2B
-// var_dump($Afterpay);
+          <li class="row totals">
+            <span class="itemName">Total:</span>
+            <span class="price">£1000.00</span>
+            <span class="order">  <a class="text-center" href="#">Confirm</a></span>
+          </li>
 
+          </ul>
+        </div>
 
-// Invoice Lines
+      </div>
 
+      <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script src="assets/js/bootstrap.min.js"></script>
+      <script src="assets/js/customjs.js"></script>
 
-//echo $aporder->getInvoicenumber;
-
-// var_dump($aporder);
-// Capture Object
-
-//Capture Object End
-
-//var_dump($Afterpay->order_result);
+    </body>
+  </html>
