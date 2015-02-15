@@ -1,5 +1,5 @@
 <<?php
-require_once("afterpay/lib/Afterpay/Afterpay.php");
+require_once("Afterpay/Afterpay.php");
 
 
  $merchantId = "300005645";
@@ -13,17 +13,14 @@ $authorisation['portfolioid'] = $portfolioId;
 $authorisation['password'] = $password;
 $modus = 'test'; // or 'live' for production
 
-
-
 /// ORDER
 
 $sku = 'PRODUCT1';
 $name = 'Product name 1';
-$qty = 3;
-$price = 3000; // in cents
+$qty = 5;
+$price = 5000; // in cents
 $tax_category = 1; // 1 = high, 2 = low, 3, zero, 4 no tax
 $Afterpay->create_order_line( $sku, $name, $qty, $price, $tax_category );
-
 
 //
 // Set up the bill to address
