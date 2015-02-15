@@ -1,1 +1,0 @@
-Example PHP Class for connecting with AfterPay webservice

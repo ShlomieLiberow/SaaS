@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Shopping Cart</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>		
+	</head>
+
+	<body>
+		
+		<nav class="navbar" >
+			<div class="container">
+				<a class="navbar-brand" href="#">SaaS</a>
+				<div class="navbar-right">
+					<div class="container minicart"></div>
+				</div>
+			</div>
+		</nav>
+		
+		
+		<!-- The popover content  <div class="container-fluid breadcrumbBox text-center" > 
+			<ol class="breadcrumb"> 
+				<li><a href="#">Review</a></li>
+				<li class="active"><a href="#">Order</a></li>
+				<li><a href="#">Payment</a></li>
+			</ol>
+		</div> -->
+		
+		<div class="container text-center" >
+
+			<div class="col-md-6 text-left">
+				<ul>
+					<li class="row list-inline columnCaptions ">
+						<span>QTY</span>
+						<span>ITEM</span>
+						<span>Date Payment Due</span>
+						<span>Price</span>
+					</li>
+					<li class="row">
+						<span class="quantity">1</span>
+						<span class="itemName">Willy Wonka Airline Ticket</span>
+					 <div class="col-md-3"> <span class="itemName">25/02/2015</span> </div> 
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">£100.00</span>
+					</li>
+					<li class="row">
+						<span class="quantity">1</span>
+						<span class="itemName">Willy Wonka Airline Ticket</span>
+					    <div class="col-md-3"> <span class="itemName">05/03/2015</span> </div> 
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">£100.00</span>
+					</li>
+					<li class="row">
+						<span class="quantity">1</span>
+						<span class="itemName">Willy Wonka Airline Ticket</span>
+						<div class="col-md-3"> <span class="itemName">15/03/2015</span> </div> 
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">£100.00</span>
+					</li>
+					<li class="row">
+						<span class="quantity">1</span>
+						<span class="itemName">Willy Wonka Airline Ticket</span>
+						<div class="col-md-3"> <span class="itemName">25/03/2015</span> </div> 
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">£100.00</span>
+					</li>
+					<li class="row">
+						<span class="quantity">1</span>
+						<span class="itemName">Willy Wonka Airline Ticket</span>
+						<div class="col-md-3"> <span class="itemName">05/04/2015</span> </div> 
+						<span class="popbtn"><a class="arrow"></a></span>
+						<span class="price">£100.00</span>
+					</li>
+					<li class="row totals">
+						<span class="itemName">Total:</span>
+						<span class="price">£1000.00</span>
+						<span class="order">  <a class="text-center" href="holder.html">Confirm AfterPay Strip</a></span>
+=
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- The popover content -->
+
+		<div id="popover" style="display: none">
+			<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+			<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+		</div>
+		
+		<!-- JavaScript includes -->
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/customjs.js"></script>
+
+	</body>
+</html>

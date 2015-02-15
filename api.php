@@ -219,8 +219,7 @@ function process(){
     // Capture
     //
 
-
-
+    $tid = array();
     for($i = 0; $i<3; $i++) {
         $cap["Invoicelines"] = $invLine;
         $cap["invoicenumber"] = $orderNo.$i;
@@ -238,9 +237,16 @@ function process(){
         $result =$Afterpay->order_result;
 
 
+        echo "<p/>";
+
+        //var_dump($result);
+        $tid[$i] = $result->return->transactionId;
+
+
+
 
     }
-    var_dump($Afterpay);
+    var_dump($tid);
 
 
 
