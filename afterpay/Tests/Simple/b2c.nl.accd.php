@@ -1,31 +1,14 @@
-<<?php
-require_once("afterpay/lib/Afterpay/Afterpay.php");
+<?php
 
+// Load AfterPay Library
+require_once('../../Lib/Afterpay/Afterpay.php');
 
- $merchantId = "300005645";
- $portfolioId = "1";
- $password ="17fe96fdff";
+// Load dBug Library for showing result. Not necesary for production
+require_once('../../Lib/dBug/dBug.php');
 
-
+// Create new AfterPay Object
 $Afterpay = new Afterpay();
-$authorisation['merchantid'] =$merchantId;
-$authorisation['portfolioid'] = $portfolioId;
-$authorisation['password'] = $password;
-$modus = 'test'; // or 'live' for production
 
-
-
-/// ORDER
-
-$sku = 'PRODUCT1';
-$name = 'Product name 1';
-$qty = 3;
-$price = 3000; // in cents
-$tax_category = 1; // 1 = high, 2 = low, 3, zero, 4 no tax
-$Afterpay->create_order_line( $sku, $name, $qty, $price, $tax_category );
-
-
-//
 // Set up the bill to address
 $aporder['billtoaddress']['city'] = 'Heerenveen';
 $aporder['billtoaddress']['housenumber'] = '90';
@@ -55,27 +38,32 @@ $aporder['shiptoaddress']['referenceperson']['phonenumber'] = '0513744112';
 $aporder['shiptoaddress']['streetname'] =  'KR Poststraat';
 
 // Set up the additional information
-//   $aporder['ordernumber'] = 'ORDER123';
-//  $aporder['bankaccountnumber'] = '12345'; // or IBAN 'NL32INGB0000012345';
-// $aporder['currency'] = 'EUR';
-//$aporder['ipaddress'] = "5.79.64.0";//$_SERVER['REMOTE_ADDR'];
+$aporder['ordernumber'] = 'ORDER1234567-04';
+$aporder['bankaccountnumber'] = '';
+$aporder['currency'] = 'EUR';
+$aporder['ipaddress'] = $_SERVER['REMOTE_ADDR'];
 
-//       "captureFull'
+// Set up order lines, repeat for more order lines
+$sku = 'PRODUCT1';
+$name = 'Product name 1';
+$qty = 3;
+$price = 3000; // in cents
+$tax_category = 1; // 1 = high, 2 = low, 3, zero, 4 no tax
+$Afterpay->create_order_line($sku, $name, $qty, $price, $tax_category);
+
 // Create the order object for B2C or B2B
-$Afterpay->set_order( $aporder, 'B2C' );
+$Afterpay->set_order($aporder, 'B2C');
+
+// Set up the AfterPay credentials and sent the order
+$authorisation['merchantid'] = '';
+$authorisation['portfolioid'] = '';
+$authorisation['password'] = '';
+$modus = 'test'; // for production set to 'live'
+
+// Show request in debug
+new dBug(array('AfterPay Request' => $Afterpay));
 
 $Afterpay->do_request( $authorisation, $modus );
-// var_dump($Afterpay);
 
-
-// Invoice Lines
-
-
-echo $aporder->getInvoicenumber;
-
-// var_dump($aporder);
-// Capture Object
-
-//Capture Object End
-
-var_dump($Afterpay->order_result);
+// Show result in debug
+new dBug(array('AfterPay Result' => $Afterpay->order_result));
