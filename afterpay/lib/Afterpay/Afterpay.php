@@ -97,6 +97,9 @@ class Afterpay
         } elseif ( $this->order_type == 'B2B' ) {
             $billto_address = 'b2bbilltoAddress';
             $shipto_address = 'b2bshiptoAddress';
+        }else{
+            $billto_address = 'b2cbilltoAddress';
+            $shipto_address = 'b2cshiptoAddress';
         }
         
         if( $order['billtoaddress']['isocountrycode'] == 'BE' ) {

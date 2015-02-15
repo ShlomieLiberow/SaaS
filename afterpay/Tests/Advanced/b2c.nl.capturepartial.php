@@ -23,6 +23,7 @@ $price = 3000; // in cents
 $tax_category = 1; // 1 = high, 2 = low, 3, zero, 4 no tax
 $Afterpay->create_order_line( $sku, $name, $qty, $price, $tax_category );
 
+
 // Create the order object for order management (OM)
 $Afterpay->set_order( $aporder, 'OM' );
 
